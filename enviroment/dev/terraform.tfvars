@@ -4,7 +4,7 @@ rg_block = {
     location = "centralindia"
   }
   rgroup1 = {
-    name     = "tanu02"
+    name     = "tanu22"
     location = "centralindia"
   }
 
