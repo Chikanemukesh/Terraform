@@ -3,9 +3,10 @@ rg_block = {
     name     = "tanu01"
     location = "centralindia"
   }
+  
   rgroup1 = {
-    name     = "tanu22"
-    location = "centralindia"
+    name     = "ajio"
+    location = "westus"
   }
 
 }
