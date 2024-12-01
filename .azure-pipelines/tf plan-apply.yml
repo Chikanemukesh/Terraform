@@ -1,0 +1,16 @@
+
+pool: self-agent
+
+trigger:
+- main
+
+steps:
+  - task: TerraformTaskV4@4
+    inputs:
+      provider: 'azurerm'
+      command: 'init'
+      backendServiceArm: 'connection service'
+      backendAzureRmResourceGroupName: 'skdmp'
+      backendAzureRmStorageAccountName: 'skdmpstg'
+      backendAzureRmContainerName: 'azcontainer'
+      backendAzureRmKey: 'tf/terraform.tfstate'
