@@ -15,3 +15,6 @@ steps:
     backendAzureRmStorageAccountName: 'skdmpstg'
     backendAzureRmContainerName: 'azcontainer'
     backendAzureRmKey: 'tf/terraform.tfstate'
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
