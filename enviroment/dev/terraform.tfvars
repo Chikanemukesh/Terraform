@@ -20,6 +20,14 @@ stgs_block = {
   }
 }
 
+karishmacontainer = {
+  nicname = {
+    name = "karishma"
+    resource_group_name = "tanu01"
+      
+  }
+}
+
 
 vnet_block = {
   vnets01 = {

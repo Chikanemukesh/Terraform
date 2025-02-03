@@ -21,3 +21,11 @@ variable "vm_block" {
 variable "vnet_block" {
   type = map(any)
 }
+
+variable "karishmacontainer" {
+  type = map(object({
+    name                = string
+    resource_group_name = string
+  }))
+  
+}
