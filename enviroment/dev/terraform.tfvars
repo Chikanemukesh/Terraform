@@ -3,7 +3,7 @@ rg_block = {
     name     = "tanu01"
     location = "centralindia"
   }
-  
+
   rgroup1 = {
     name     = "ajio"
     location = "westus"
@@ -20,11 +20,11 @@ stgs_block = {
   }
 }
 
-karishmacontainer = {
-  nicname = {
-    name = "karishma"
+lnct = {
+  containername = {
+    name                = "karishma"
     resource_group_name = "tanu01"
-      
+
   }
 }
 

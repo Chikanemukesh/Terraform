@@ -10,9 +10,9 @@ module "stgs_block" {
   depends_on = [module.rg_block]
 }
 
-madule "karishmacontainer" {
-  source = "../../child_module/container"
-  karishmacontainer = var.karishmacontainer
+module "lnct" {
+  source     = "../../child_module/container"
+  lnct       = var.lnct
   depends_on = [module.stgs_block]
 }
 
