@@ -1,0 +1,31 @@
+pool: karishma
+trigger: none
+steps:
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
+    backendServiceArm: 'my connection'
+    backendAzureRmResourceGroupName: 'skdmp'
+    backendAzureRmStorageAccountName: 'skdmpstg'
+    backendAzureRmContainerName: 'azcontainer'
+    backendAzureRmKey: 'tf/terraform.tfstate'
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
+    backendServiceArm: 'my connection'
+    backendAzureRmResourceGroupName: 'skdmp'
+    backendAzureRmStorageAccountName: 'skdmpstg'
+    backendAzureRmContainerName: 'azcontainer'
+    backendAzureRmKey: 'tf/terraform.tfstate'
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'validate'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'

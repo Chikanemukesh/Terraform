@@ -1,0 +1,56 @@
+pool: karishma
+trigger: none
+stages:
+- stage: TerraformInitandPlanStage
+  displayName: terraform init and plan 
+  jobs: 
+  - job: TerraformInitandPlan
+    displayName: terraform init and plan
+    steps: 
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
+        backendServiceArm: 'my connection'
+        backendAzureRmResourceGroupName: 'skdmp'
+        backendAzureRmStorageAccountName: 'skdmpstg'
+        backendAzureRmContainerName: 'azcontainer'
+        backendAzureRmKey: 'tf/terraform.tfstate'
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'azurerm'
+        command: 'plan'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
+        environmentServiceNameAzureRM: 'my connection'
+- stage: TerraformApply
+  displayName: terraform apply
+  condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'main'))
+  jobs: 
+  - job: Validation
+    displayName: validation
+    pool: server
+    steps:  
+    - task: ManualValidation@1
+      inputs:
+        notifyUsers: 'abcd@abc.com'       
+  - job: TerraformApply
+    displayName: terraform apply
+    dependsOn: validation
+    steps: 
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
+        backendServiceArm: 'my connection'
+        backendAzureRmResourceGroupName: 'skdmp'
+        backendAzureRmStorageAccountName: 'skdmpstg'
+        backendAzureRmContainerName: 'azcontainer'
+        backendAzureRmKey: 'tf/terraform.tfstate'
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'azurerm'
+        command: 'apply'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
+        environmentServiceNameAzureRM: 'my connection'
